@@ -272,12 +272,12 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
     <p>&copy; 2025 RUEDA – Prodotto artigianale, 100% venezuelano, fatto in Italia</p>
   </footer>
 <script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxr6yVF1zTBU2nO-r_tyUJRSHZXe5TCyFEWsYc4B8Oyc9ncvFLH8NjGOrVlK2I5QA50BA/exec";
+  const SCRIPT_URL = "/api/testimonianze";
   function submitTestimonial(event) {
   event.preventDefault();
 
-  const name = document.getElementById("testimonialName").value.trim();
-  const text = document.getElementById("testimonialText").value.trim();
+  const nome = document.getElementById("testimonialName").value.trim();
+  const recensione = document.getElementById("testimonialText").value.trim();
 
   if (!name || !text) {
     alert("Per favore, compila tutti i campi!");
@@ -288,8 +288,8 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
     method: 'POST',
     body: JSON.stringify({ nome, recensione }),
     headers: {
-      'Content-Type': 'text/plain;charset=utf-8'
-    }
+  'Content-Type': 'application/json'
+   }
   })
   .then(res => {
     console.log("Risposta POST:", res.status);
