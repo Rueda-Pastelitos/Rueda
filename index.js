@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// GET: prendi tutte le testimonianze dal DB
 app.get('/api/testimonianze', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM testimonianze ORDER BY created_at DESC');
@@ -30,7 +29,6 @@ app.get('/api/testimonianze', async (req, res) => {
   }
 });
 
-// POST: salva una nuova testimonianza nel DB
 app.post('/api/testimonianze', async (req, res) => {
   const { name, text, translation } = req.body;
   if (!name || !text) {
@@ -49,9 +47,3 @@ app.post('/api/testimonianze', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server avviato su http://localhost:${PORT}`);
 });
-
-  fs.writeFileSync(filePath, JSON.stringify(testimonianze, null, 2));
-  res.status(201).json({ message: 'Testimonianza salvata!' });
-});
-
-app.listen(PORT, () => console.log(`Server attivo su porta ${PORT}`));
