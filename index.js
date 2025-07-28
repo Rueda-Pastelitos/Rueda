@@ -21,11 +21,11 @@ app.get('/', (req, res) => {
 
 app.get('/api/testimonianze', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM testimonianze ORDER BY created_at DESC');
+    const result = await pool.query('SELECT * FROM testimonianze ORDER BY data DESC');
     res.json(result.rows);
   } catch (error) {
     console.error('Errore nel recupero testimonianze:', error);
-    res.status(500).json({ error: 'Errore nel recupero testimonianze' });
+    res.status(500).json({ error: 'Errore nel recupero testimonze' });
   }
 });
 
