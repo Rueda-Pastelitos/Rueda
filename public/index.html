@@ -309,18 +309,20 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
 }
 
   function loadTestimonials() {
-    fetch(SCRIPT_URL)
-      .then(res => res.json())
-      .then(data => {
-        const list = document.getElementById("testimonialList");
-        list.innerHTML = "";
-        data.reverse().forEach(t => {
-          const div = document.createElement("div");
-          div.className = "testimonial";
-          div.innerHTML = `<p><strong>${t.name}</strong>: "${t.text}"</p>`;
-          list.appendChild(div);
-        });
-      })
+  fetch(SCRIPT_URL)
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById("testimonialList");
+      list.innerHTML = "";
+      data.reverse().forEach(t => {
+        const div = document.createElement("div");
+        div.className = "testimonial";
+        div.innerHTML = `<p><strong>${t.nome}</strong>: "${t.recensione}"</p>`;
+        list.appendChild(div);
+      });
+    });
+}
+
       .catch(() => {
         document.getElementById("testimonialList").innerHTML = "<p>Impossibile caricare le recensioni.</p>";
       });
