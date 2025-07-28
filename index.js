@@ -31,7 +31,7 @@ app.get('/api/testimonianze', async (req, res) => {
 
 app.post('/api/testimonianze', async (req, res) => {
   const { nome, recensione, translation } = req.body;
-  if (!name || !text) {
+  if (!nome || !recensione) {
     return res.status(400).json({ error: 'Campi obbligatori mancanti' });
   }
   try {
