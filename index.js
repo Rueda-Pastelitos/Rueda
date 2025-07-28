@@ -30,13 +30,13 @@ app.get('/api/testimonianze', async (req, res) => {
 });
 
 app.post('/api/testimonianze', async (req, res) => {
-  const { name, text, translation } = req.body;
+  const { nome, recensione, translation } = req.body;
   if (!name || !text) {
     return res.status(400).json({ error: 'Campi obbligatori mancanti' });
   }
   try {
     const query = 'INSERT INTO testimonianze (nome, messaggio, translation) VALUES ($1, $2, $3)';
-    await pool.query(query, [name, text, translation || null]);
+    await pool.query(query, [nome, recensione, translation || null]);
     res.json({ status: 'ok' });
   } catch (error) {
     console.error('Errore nel salvataggio testimonianza:', error);
