@@ -285,24 +285,25 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
   }
 
   // Funzione per inviare l'ordine via WhatsApp
-  function sendWhatsAppOrder(event) {
-    event.preventDefault();
-    const nome = document.getElementById('orderName').value.trim();
-    const email = document.getElementById('orderEmail').value.trim();
-    const qty = document.getElementById('orderQty').value;
+function sendWhatsAppOrder(event) {
+  event.preventDefault();
+  const nome = document.getElementById('orderName').value.trim();
+  const email = document.getElementById('orderEmail').value.trim();
+  const qty = document.getElementById('orderQty').value;
 
-    if (!nome || !email || qty < 1) {
-      alert('Per favore compila tutti i campi correttamente.');
-      return;
-    }
-
-    const message = `Ciao, sono ${nome} e vorrei ordinare ${qty} confezioni di RUEDA. La mia email è ${email}.`;
-    const encodedMessage = encodeURIComponent(message);
-    // Numero WhatsApp da modificare con il tuo reale
-    const whatsappNumber = '393491234567';
-    const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    window.open(url, '_blank');
+  if (!nome || !email || qty < 1) {
+    alert('Per favore compila tutti i campi correttamente.');
+    return;
   }
+  const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${nome}%0A📧 Email: ${email}`;
+  const phone = "393932760000"; // metti qui il numero reale
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
+  hasOrdered = true;
+  enableTestimonialForm();
+  window.open(url, '_blank');
+}
 
   // Carica testimonianze dal server
   async function loadTestimonials() {
