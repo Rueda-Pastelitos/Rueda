@@ -1,4 +1,4 @@
-<!-<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -131,26 +131,22 @@
       });
     }
 
- function sendWhatsAppOrder(event) {
-  event.preventDefault();
-  const nome = document.getElementById('orderName').value.trim();
-  const email = document.getElementById('orderEmail').value.trim();
-  const qty = document.getElementById('orderQty').value;
+    function sendWhatsAppOrder(event) {
+      event.preventDefault();
 
-  if (!nome || !email || qty < 1) {
-    alert('Per favore compila tutti i campi correttamente.');
-    return;
-  }
+      const name = document.getElementById('orderName').value;
+      const email = document.getElementById('orderEmail').value;
+      const qty = document.getElementById('orderQty').value;
 
-  const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${nome}%0A📧 Email: ${email}`;
-  const phone = "393932760000"; // metti qui il numero reale
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${name}%0A📧 Email: ${email}`;
+      const phone = "393932760000";
+      const url = `https://wa.me/${phone}?text=${message}`;
 
-  alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
-  hasOrdered = true;
-  enableTestimonialForm();
-  window.open(url, '_blank');
-}
+      hasOrdered = true;
+      alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
+      enableTestimonialForm();
+      window.open(url, '_blank');
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
       switchLanguage('it');
@@ -276,42 +272,36 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
     <p>&copy; 2025 RUEDA – Prodotto artigianale, 100% venezuelano, fatto in Italia</p>
   </footer>
 <script>
-  const SCRIPT_URL = "/api/testimonianze";
-async function submitTestimonial(event) {
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxr6yVF1zTBU2nO-r_tyUJRSHZXe5TCyFEWsYc4B8Oyc9ncvFLH8NjGOrVlK2I5QA50BA/exec";
+  function submitTestimonial(event) {
   event.preventDefault();
 
-  const nome = document.getElementById("testimonialName").value.trim();
-  const recensione = document.getElementById("testimonialText").value.trim();
+  const name = document.getElementById("testimonialName").value.trim();
+  const text = document.getElementById("testimonialText").value.trim();
 
-  if (!nome || !recensione) {
+  if (!name || !text) {
     alert("Per favore, compila tutti i campi!");
     return;
   }
 
-  try {
-    const res = await fetch("/api/testimonianze", {
-      method: 'POST',
-      body: JSON.stringify({ nome, recensione, translation }), // Assicurati che 'translation' sia definito!
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ name, text }),
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    }
+  })
+  .then(res => {
+    console.log("Risposta POST:", res.status);
     if (res.ok) {
       setTimeout(() => {
-        alert("🎉 Grazie per la tua recensione! La pubblicheremo tra poco.");
+      alert("🎉 Grazie per la tua recensione! La pubblicheremo tra poco.");
       }, 300);
       document.getElementById("testimonialForm").reset();
+      loadTestimonials(); // ricarica la lista!
     } else {
-      const errMsg = await res.text();
-      console.error('Messaggio ricevuto:', errMsg);
-      alert("⚠️ Errore durante l'invio: " + errMsg);
+      alert("⚠️ Errore durante l'invio. Riprova più tardi!");
     }
-  } catch (err) {
-    console.error("Errore rete:", err);
-    alert("🚨 Errore di rete. Controlla la connessione.");
-  }
-}  
   })
   .catch(err => {
     console.error("Errore rete:", err);
@@ -320,20 +310,18 @@ async function submitTestimonial(event) {
 }
 
   function loadTestimonials() {
-  fetch(SCRIPT_URL)
-    .then(res => res.json())
-    .then(data => {
-      const list = document.getElementById("testimonialList");
-      list.innerHTML = "";
-      data.reverse().forEach(t => {
-        const div = document.createElement("div");
-        div.className = "testimonial";
-        div.innerHTML = `<p><strong>${t.nome}</strong>: "${t.recensione}"</p>`;
-        list.appendChild(div);
-      });
-    });
-}
-
+    fetch(SCRIPT_URL)
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById("testimonialList");
+        list.innerHTML = "";
+        data.reverse().forEach(t => {
+          const div = document.createElement("div");
+          div.className = "testimonial";
+          div.innerHTML = `<p><strong>${t.name}</strong>: "${t.text}"</p>`;
+          list.appendChild(div);
+        });
+      })
       .catch(() => {
         document.getElementById("testimonialList").innerHTML = "<p>Impossibile caricare le recensioni.</p>";
       });
@@ -343,4 +331,4 @@ async function submitTestimonial(event) {
 </script>
 
 </body>
-</html>- Landing Page HTML -->
+</html>
