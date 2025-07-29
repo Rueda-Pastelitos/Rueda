@@ -35,7 +35,7 @@ app.post('/api/testimonianze', async (req, res) => {
     return res.status(400).json({ error: 'Campi obbligatori mancanti' });
   }
   try {
-    const query = 'INSERT INTO testimonianze (nome, messaggio, translation) VALUES ($1, $2, $3)';
+    const query = 'INSERT INTO testimonianze (nome, recensione, translation) VALUES ($1, $2, $3)';
     await pool.query(query, [nome, recensione, translation || null]);
     res.json({ status: 'ok' });
   } catch (error) {
