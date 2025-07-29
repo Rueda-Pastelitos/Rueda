@@ -1,165 +1,13 @@
-<!-<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RUEDA – La pasta venezuelana che gira l’Italia</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fff8ec;
-      color: #3b2f2f;
-    }
-    header {
-      background-color: #f2c94c;
-      text-align: center;
-      padding: 2rem 1rem;
-      position: relative;
-    }
-    header img.logo {
-      width: 400px;
-      height: auto;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-      flex-wrap: wrap;
-    }
-    nav a {
-      padding: 0.5rem 1rem;
-      background-color: #3b2f2f;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-    section {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    .highlight {
-      background-color: #fff1cc;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-    }
-    form input, form textarea, form button, form select {
-      width: 100%;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #3b2f2f;
-      color: #fff;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
-      background-color: #27ae60;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .pastelito-img {
-      width: 40%;
-      max-width: 400px;
-      display: block;
-      margin: 2rem auto;
-      border-radius: 10px;
-    }
-    .lang-toggle {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      text-align: right;
-    }
-    .lang-toggle button {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #3b2f2f;
-      margin: 0 0.5rem;
-    }
-    .lang-toggle img {
-      width: 20px;
-      vertical-align: middle;
-      margin-right: 5px;
-    }
-    .testimonial {
-      background-color: #fff1cc;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-left: 5px solid #f2994a;
-    }
-  </style>
-  <script>
-    let hasOrdered = false;
-
-    function switchLanguage(lang) {
-      const it = document.querySelectorAll('.lang-it');
-      const es = document.querySelectorAll('.lang-es');
-      it.forEach(el => el.style.display = lang === 'it' ? 'block' : 'none');
-      es.forEach(el => el.style.display = lang === 'es' ? 'block' : 'none');
-    }
-
-    function disableTestimonialForm() {
-      document.querySelectorAll("#testimonianze form").forEach(form => {
-        form.querySelector("textarea").disabled = true;
-        form.querySelector("input").disabled = true;
-        form.querySelector("button").disabled = true;
-      });
-    }
-
-    function enableTestimonialForm() {
-      document.querySelectorAll("#testimonianze form").forEach(form => {
-        form.querySelector("textarea").disabled = false;
-        form.querySelector("input").disabled = false;
-        form.querySelector("button").disabled = false;
-      });
-    }
-
- function sendWhatsAppOrder(event) {
-  event.preventDefault();
-  const nome = document.getElementById('orderName').value.trim();
-  const email = document.getElementById('orderEmail').value.trim();
-  const qty = document.getElementById('orderQty').value;
-
-  if (!nome || !email || qty < 1) {
-    alert('Per favore compila tutti i campi correttamente.');
-    return;
-  }
-
-  const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${nome}%0A📧 Email: ${email}`;
-  const phone = "393932760000"; // metti qui il numero reale
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
-  hasOrdered = true;
-  enableTestimonialForm();
-  window.open(url, '_blank');
-}
-
-    document.addEventListener('DOMContentLoaded', () => {
-      switchLanguage('it');
-      disableTestimonialForm();
-    });
-  </script>
+  <link rel="stylesheet" href="stile.css"> <!-- Puoi separare gli stili se preferisci -->
 </head>
-
 <body>
+
   <header>
     <div class="lang-toggle">
       <button onclick="switchLanguage('it')">
@@ -172,57 +20,15 @@
     <img src="img/logo-rueda.png" alt="RUEDA Logo" class="logo" />
     <p class="lang-it">La sfoglia venezuelana che gira l’Italia</p>
     <p class="lang-es" style="display: none;">La masa venezolana que rueda por Italia</p>
+
     <nav>
-      <a href="#chisiamo" class="lang-it">Chi siamo</a>
-      <a href="#chisiamo" class="lang-es" style="display: none;">Quiénes somos</a>
-      <a href="#video" class="lang-it">Come si fanno</a>
-      <a href="#video" class="lang-es" style="display: none;">Cómo se hacen</a>
-      <a href="#listino" class="lang-it">Listino</a>
-      <a href="#listino" class="lang-es" style="display: none;">Precios</a>
-      <a href="#ordina" class="lang-it">Ordina</a>
-      <a href="#ordina" class="lang-es" style="display: none;">Pide</a>
-      <a href="#testimonianze" class="lang-it">Testimonianze</a>
-      <a href="#testimonianze" class="lang-es" style="display: none;">Testimonios</a>
+      <!-- Link multilingua -->
+      <!-- ... -->
     </nav>
   </header>
 
-  <section id="chisiamo">
-    <h2 class="lang-it">Chi siamo</h2>
-    <h2 class="lang-es" style="display: none;">Quiénes somos</h2>
-    <p class="lang-it">
-      RUEDA nasce con un sogno: portare un pezzetto di Venezuela sulle tavole italiane...
-Produciamo artigianalmente dischi di pasta per pastelitos, secondo la tradizione venezuelana. Ogni sfoglia è pensata per essere facile da usare, pronta da farcire, fritta o infornata… e naturalmente divorata con gusto.
-Con ingredienti semplici, senza conservanti, e un cuore latino che batte forte — RUEDA è il ponte tra due culture, da condividere con chi ami.
-    </p>
-    <p class="lang-es" style="display: none;">
-      RUEDA nace con un sueño: llevar un pedacito de Venezuela a las mesas italianas...
-Producimos artesanalmente discos de masa para pastelitos, siguiendo la tradición venezolana. Cada lámina está pensada para ser fácil de usar, lista para rellenar, freír o hornear… y, por supuesto, devorar con gusto.
-Con ingredientes sencillos, sin conservantes, y un corazón latino que late con fuerza — RUEDA es el puente entre dos culturas, para compartir con quienes amas.
-    </p>
-    <img src="img/pastelito.jpg" alt="Pastelito dorato" class="pastelito-img">
-  </section>
-
-  <section id="video">
-    <h2 class="lang-it">Come si fanno</h2>
-    <h2 class="lang-es" style="display: none;">Cómo se hacen</h2>
-    <p class="lang-it">Presto potrai imparare passo dopo passo come preparare i pastelitos perfetti, direttamente dalla tradizione venezuelana. Con RUEDA è semplice, veloce e soddisfacente!</p>
-    <p class="lang-es" style="display: none;">¡Muy pronto podrás aprender paso a paso cómo preparar los pastelitos perfectos, directamente desde la tradición venezolana. ¡Con RUEDA es fácil, rápido y satisfactorio!</p>
-  </section>
-
-<section id="listino">
-  <h2 class="lang-it">Listino prezzi</h2>
-  <h2 class="lang-es" style="display: none;">Lista de precios</h2>
-  <p class="lang-it">Consulta qui i prezzi delle confezioni RUEDA disponibili.</p>
-  <p class="lang-es" style="display: none;">Consulta aquí los precios de los paquetes RUEDA disponibles.</p>
-  <img src="img/listino.png" alt="Listino prezzi RUEDA" style="width: 100%; max-width: 250px; display: block; margin: auto; border-radius: 10px;" />
-</section>
-
   <section id="ordina">
     <h2 class="lang-it">Ordina i tuoi dischi RUEDA</h2>
-    <p class="lang-it">Vuoi iniziare subito a cucinare? Ordina direttamente le tue sfoglie artigianali RUEDA!</p>
-    <div style="height: 40px;"></div>
-    <h2 class="lang-es" style="display: none;">Ordena tus discos RUEDA</h2>
-    <p class="lang-es" style="display: none;">¿Quieres empezar a cocinar ya? ¡Haz tu pedido de las láminas artesanales RUEDA directamente!</p>
     <form id="whatsappOrderForm" onsubmit="sendWhatsAppOrder(event)">
       <label>Nome</label>
       <input type="text" id="orderName" required />
@@ -230,114 +36,133 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
       <input type="email" id="orderEmail" required />
       <label>Quantità</label>
       <select id="orderQty">
-        <option value="6">Confezione da 6</option>
-        <option value="12">Confezione da 12</option>
-        <option value="30">Confezione da 30</option>
+        <option value="6">6 dischi</option>
+        <option value="12">12 dischi</option>
+        <option value="30">30 dischi</option>
       </select>
-<a href="#listino" class="btn" style="background-color: #27ae60;">📋 Vedi il listino prezzi</a>
-
-      <button class="btn" type="submit">📱 Ordina via WhatsApp con un clic</button>
+      <button class="btn" type="submit">📱 Ordina via WhatsApp</button>
     </form>
   </section>
 
-<section id="testimonianze">
-  <div class="lang-it">
-    <h2>Cosa dicono i nostri clienti</h2>
-    <p>Chi ha provato RUEDA sa che non è solo una sfoglia, ma un’emozione che gira dalla cucina al cuore.</p>
+  <section id="testimonianze">
+    <div class="lang-it">
+      <h2>Cosa dicono i nostri clienti</h2>
+      <div id="testimonialList"></div>
 
-    <!-- Le testimonianze caricate -->
-    <div id="testimonialList"></div>
-
-    <!-- Form per inviare nuove testimonianze -->
-    <form id="testimonialForm" onsubmit="submitTestimonial(event)">
-      <h3>Lascia una testimonianza (solo dopo l’ordine)</h3>
-      <input type="text" placeholder="Il tuo nome" id="testimonialName" required />
-      <textarea placeholder="La tua esperienza con i dischi RUEDA" id="testimonialText" required></textarea>
-      <button type="submit">Invia</button>
-    </form>
-  </div>
-
-  <div class="lang-es" style="display: none;">
-    <h2>¿Qué dicen nuestros clientes?</h2>
-    <p>Quien ha probado RUEDA sabe que no es solo una lámina, sino una emoción que rueda de la cocina al corazón.</p>
-
-    <div id="testimonialListEs"></div>
-
-    <form>
-      <h3>Deja tu testimonio (solo tras hacer un pedido)</h3>
-      <input type="text" placeholder="Tu nombre" disabled />
-      <textarea placeholder="Tu experiencia con los discos RUEDA" disabled></textarea>
-      <button type="submit" disabled>Enviar</button>
-    </form>
-  </div>
-</section>
+      <form id="testimonialForm" onsubmit="submitTestimonial(event)">
+        <h3>Lascia una testimonianza</h3>
+        <input type="text" id="testimonialName" placeholder="Il tuo nome" required disabled />
+        <textarea id="testimonialText" placeholder="La tua esperienza RUEDA" required disabled></textarea>
+        <textarea id="translation" placeholder="Traduzione (facoltativa)" disabled></textarea>
+        <button type="submit" disabled>Invia</button>
+      </form>
+    </div>
+  </section>
 
   <footer>
     <p>&copy; 2025 RUEDA – Prodotto artigianale, 100% venezuelano, fatto in Italia</p>
   </footer>
-<script>
-  const SCRIPT_URL = "/api/testimonianze";
-  function submitTestimonial(event) {
-  event.preventDefault();
 
-  const nome = document.getElementById("testimonialName").value.trim();
-  const recensione = document.getElementById("testimonialText").value.trim();
+  <!-- 🌐 Script con 'type="module"' per usare async/await -->
+  <script type="module">
+    const SCRIPT_URL = "/api/testimonianze";
+    let hasOrdered = false;
 
-  if (!nome || !recensione) {
-    alert("Per favore, compila tutti i campi!");
-    return;
-  }
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: JSON.stringify({ nome, recensione, translation }),
-    headers: {
-  'Content-Type': 'application/json'
-   }
-  })
-  .then(res => {
-    console.log("Risposta POST:", res.status);
-    if (res.ok) {
-      setTimeout(() => {
-      alert("🎉 Grazie per la tua recensione! La pubblicheremo tra poco.");
-      }, 300);
-      document.getElementById("testimonialForm").reset();
-    } else {
-      if (!res.ok) {
-  	const errMsg = await res.text();
-  	console.error('Messaggio ricevuto:', errMsg);
-  	alert("⚠️ Errore durante l'invio: " + errMsg);
-	}
+    function switchLanguage(lang) {
+      document.querySelectorAll('.lang-it').forEach(el => el.style.display = lang === 'it' ? 'block' : 'none');
+      document.querySelectorAll('.lang-es').forEach(el => el.style.display = lang === 'es' ? 'block' : 'none');
     }
-  })
-  .catch(err => {
-    console.error("Errore rete:", err);
-    alert("🚨 Errore di rete. Controlla la connessione.");
-  });
-}
 
-  function loadTestimonials() {
-  fetch(SCRIPT_URL)
-    .then(res => res.json())
-    .then(data => {
-      const list = document.getElementById("testimonialList");
-      list.innerHTML = "";
-      data.reverse().forEach(t => {
-        const div = document.createElement("div");
-        div.className = "testimonial";
-        div.innerHTML = `<p><strong>${t.nome}</strong>: "${t.recensione}"</p>`;
-        list.appendChild(div);
-      });
+    function disableTestimonialForm() {
+      const form = document.getElementById("testimonialForm");
+      form.querySelectorAll("input, textarea, button").forEach(el => el.disabled = true);
+    }
+
+    function enableTestimonialForm() {
+      const form = document.getElementById("testimonialForm");
+      form.querySelectorAll("input, textarea, button").forEach(el => el.disabled = false);
+    }
+
+    function sendWhatsAppOrder(event) {
+      event.preventDefault();
+      const nome = document.getElementById('orderName').value.trim();
+      const email = document.getElementById('orderEmail').value.trim();
+      const qty = document.getElementById('orderQty').value;
+
+      if (!nome || !email || qty < 1) {
+        alert('Per favore compila tutti i campi.');
+        return;
+      }
+
+      const message = `Ciao! Vorrei ordinare RUEDA.%0A📦 Quantità: ${qty}%0A👤 Nome: ${nome}%0A📧 Email: ${email}`;
+      const phone = "393932760000";
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
+      hasOrdered = true;
+      enableTestimonialForm();
+      window.open(url, '_blank');
+    }
+
+    async function submitTestimonial(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById("testimonialName").value.trim();
+      const recensione = document.getElementById("testimonialText").value.trim();
+      const translation = document.getElementById("translation").value.trim();
+
+      if (!nome || !recensione) {
+        alert("Per favore, compila tutti i campi!");
+        return;
+      }
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, recensione, translation })
+        });
+
+        if (res.ok) {
+          alert("🎉 Grazie per la tua recensione! La pubblicheremo tra poco.");
+          document.getElementById("testimonialForm").reset();
+          loadTestimonials();
+        } else {
+          const errMsg = await res.text();
+          console.error('Errore server:', errMsg);
+          alert("⚠️ Errore durante l'invio: " + errMsg);
+        }
+      } catch (err) {
+        console.error("🚨 Errore di rete:", err);
+        alert("Errore di rete. Riprova più tardi.");
+      }
+    }
+
+    function loadTestimonials() {
+      fetch(SCRIPT_URL)
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById("testimonialList");
+          list.innerHTML = "";
+          data.reverse().forEach(t => {
+            const div = document.createElement("div");
+            div.className = "testimonial";
+            div.innerHTML = `<p><strong>${t.nome}</strong>: "${t.recensione}"</p>` +
+              (t.translation ? `<p style="font-style: italic; color: #555;">${t.translation}</p>` : '');
+            list.appendChild(div);
+          });
+        })
+        .catch(() => {
+          document.getElementById("testimonialList").innerHTML = "<p>Impossibile caricare le testimonianze.</p>";
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      switchLanguage('it');
+      disableTestimonialForm();
+      loadTestimonials();
     });
-}
-
-      .catch(() => {
-        document.getElementById("testimonialList").innerHTML = "<p>Impossibile caricare le recensioni.</p>";
-      });
-  }
-
-  document.addEventListener("DOMContentLoaded", loadTestimonials);
-</script>
+  </script>
 
 </body>
-</html>- Landing Page HTML -->
+</html>
