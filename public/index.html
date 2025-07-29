@@ -131,22 +131,26 @@
       });
     }
 
-    function sendWhatsAppOrder(event) {
-      event.preventDefault();
+ function sendWhatsAppOrder(event) {
+  event.preventDefault();
+  const nome = document.getElementById('orderName').value.trim();
+  const email = document.getElementById('orderEmail').value.trim();
+  const qty = document.getElementById('orderQty').value;
 
-      const name = document.getElementById('orderName').value;
-      const email = document.getElementById('orderEmail').value;
-      const qty = document.getElementById('orderQty').value;
+  if (!nome || !email || qty < 1) {
+    alert('Per favore compila tutti i campi correttamente.');
+    return;
+  }
 
-      const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${name}%0A📧 Email: ${email}`;
-      const phone = "393932760000";
-      const url = `https://wa.me/${phone}?text=${message}`;
+  const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${nome}%0A📧 Email: ${email}`;
+  const phone = "393932760000"; // metti qui il numero reale
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-      hasOrdered = true;
-      alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
-      enableTestimonialForm();
-      window.open(url, '_blank');
-    }
+  alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
+  hasOrdered = true;
+  enableTestimonialForm();
+  window.open(url, '_blank');
+}
 
     document.addEventListener('DOMContentLoaded', () => {
       switchLanguage('it');
@@ -214,158 +218,126 @@ Con ingredientes sencillos, sin conservantes, y un corazón latino que late con 
 </section>
 
   <section id="ordina">
-  <h2 class="lang-it">Ordina i tuoi dischi RUEDA</h2>
-  <p class="lang-it">Vuoi iniziare subito a cucinare? Ordina direttamente le tue sfoglie artigianali RUEDA!</p>
-  <h2 class="lang-es" style="display: none;">Ordena tus discos RUEDA</h2>
-  <p class="lang-es" style="display: none;">¿Quieres empezar a cocinar ya? ¡Haz tu pedido de las láminas artesanales RUEDA directamente!</p>
-  <form id="whatsappOrderForm" onsubmit="sendWhatsAppOrder(event)">
-    <label for="orderName" class="lang-it">Nome</label>
-    <label for="orderName" class="lang-es" style="display:none;">Nombre</label>
-    <input type="text" id="orderName" required />
+    <h2 class="lang-it">Ordina i tuoi dischi RUEDA</h2>
+    <p class="lang-it">Vuoi iniziare subito a cucinare? Ordina direttamente le tue sfoglie artigianali RUEDA!</p>
+    <div style="height: 40px;"></div>
+    <h2 class="lang-es" style="display: none;">Ordena tus discos RUEDA</h2>
+    <p class="lang-es" style="display: none;">¿Quieres empezar a cocinar ya? ¡Haz tu pedido de las láminas artesanales RUEDA directamente!</p>
+    <form id="whatsappOrderForm" onsubmit="sendWhatsAppOrder(event)">
+      <label>Nome</label>
+      <input type="text" id="orderName" required />
+      <label>Email</label>
+      <input type="email" id="orderEmail" required />
+      <label>Quantità</label>
+      <select id="orderQty">
+        <option value="6">Confezione da 6</option>
+        <option value="12">Confezione da 12</option>
+        <option value="30">Confezione da 30</option>
+      </select>
+<a href="#listino" class="btn" style="background-color: #27ae60;">📋 Vedi il listino prezzi</a>
 
-    <label for="orderEmail" class="lang-it">Email</label>
-    <label for="orderEmail" class="lang-es" style="display:none;">Correo</label>
-    <input type="email" id="orderEmail" required />
-
-    <label for="orderQty" class="lang-it">Quantità</label>
-    <label for="orderQty" class="lang-es" style="display:none;">Cantidad</label>
-    <input type="number" id="orderQty" min="1" value="1" required />
-
-    <button type="submit" class="btn lang-it">Invia ordine via WhatsApp</button>
-    <button type="submit" class="btn lang-es" style="display:none;">Enviar pedido por WhatsApp</button>
-  </form>
-</section>
+      <button class="btn" type="submit">📱 Ordina via WhatsApp con un clic</button>
+    </form>
+  </section>
 
 <section id="testimonianze">
-  <h2 class="lang-it">Testimonianze</h2>
-  <h2 class="lang-es" style="display:none;">Testimonios</h2>
-  
-  <div id="testimonialList">
-    <!-- Testimonianze caricate qui via JS -->
+  <div class="lang-it">
+    <h2>Cosa dicono i nostri clienti</h2>
+    <p>Chi ha provato RUEDA sa che non è solo una sfoglia, ma un’emozione che gira dalla cucina al cuore.</p>
+
+    <!-- Le testimonianze caricate -->
+    <div id="testimonialList"></div>
+
+    <!-- Form per inviare nuove testimonianze -->
+    <form id="testimonialForm" onsubmit="submitTestimonial(event)">
+      <h3>Lascia una testimonianza (solo dopo l’ordine)</h3>
+      <input type="text" placeholder="Il tuo nome" id="testimonialName" required />
+      <textarea placeholder="La tua esperienza con i dischi RUEDA" id="testimonialText" required></textarea>
+      <button type="submit">Invia</button>
+    </form>
   </div>
 
-  <h3 class="lang-it">Lascia la tua recensione</h3>
-  <h3 class="lang-es" style="display:none;">Deja tu reseña</h3>
-  
-  <form id="testimonialForm" onsubmit="submitTestimonial(event)">
-    <label for="nome" class="lang-it">Nome</label>
-    <label for="nome" class="lang-es" style="display:none;">Nombre</label>
-    <input type="text" id="nome" name="nome" required />
-    
-    <label for="recensione" class="lang-it">Recensione</label>
-    <label for="recensione" class="lang-es" style="display:none;">Reseña</label>
-    <textarea id="recensione" name="recensione" rows="4" required></textarea>
+  <div class="lang-es" style="display: none;">
+    <h2>¿Qué dicen nuestros clientes?</h2>
+    <p>Quien ha probado RUEDA sabe que no es solo una lámina, sino una emoción que rueda de la cocina al corazón.</p>
 
-    <label for="translation" class="lang-it">Traduzione (opzionale)</label>
-    <label for="translation" class="lang-es" style="display:none;">Traducción (opcional)</label>
-    <textarea id="translation" name="translation" rows="2"></textarea>
-    
-    <button type="submit" class="btn lang-it">Invia testimonianza</button>
-    <button type="submit" class="btn lang-es" style="display:none;">Enviar testimonio</button>
-  </form>
+    <div id="testimonialListEs"></div>
+
+    <form>
+      <h3>Deja tu testimonio (solo tras hacer un pedido)</h3>
+      <input type="text" placeholder="Tu nombre" disabled />
+      <textarea placeholder="Tu experiencia con los discos RUEDA" disabled></textarea>
+      <button type="submit" disabled>Enviar</button>
+    </form>
+  </div>
 </section>
 
-<footer>
-  <p class="lang-it">© 2025 RUEDA – La pasta venezuelana che gira l’Italia</p>
-  <p class="lang-es" style="display:none;">© 2025 RUEDA – La masa venezolana que rueda por Italia</p>
-</footer>
-
+  <footer>
+    <p>&copy; 2025 RUEDA – Prodotto artigianale, 100% venezuelano, fatto in Italia</p>
+  </footer>
 <script>
-  // Cambia lingua mostrando e nascondendo gli elementi con classe lang-it o lang-es
-  function switchLanguage(lang) {
-    const itaElems = document.querySelectorAll('.lang-it');
-    const espElems = document.querySelectorAll('.lang-es');
-    if (lang === 'it') {
-      itaElems.forEach(el => el.style.display = '');
-      espElems.forEach(el => el.style.display = 'none');
-    } else {
-      itaElems.forEach(el => el.style.display = 'none');
-      espElems.forEach(el => el.style.display = '');
-    }
-  }
-
-  // Funzione per inviare l'ordine via WhatsApp
-function sendWhatsAppOrder(event) {
+  const SCRIPT_URL = "/api/testimonianze";
+  function submitTestimonial(event) {
   event.preventDefault();
-  const nome = document.getElementById('orderName').value.trim();
-  const email = document.getElementById('orderEmail').value.trim();
-  const qty = document.getElementById('orderQty').value;
 
-  if (!nome || !email || qty < 1) {
-    alert('Per favore compila tutti i campi correttamente.');
+  const nome = document.getElementById("testimonialName").value.trim();
+  const recensione = document.getElementById("testimonialText").value.trim();
+
+  if (!nome || !recensione) {
+    alert("Per favore, compila tutti i campi!");
     return;
   }
-  const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${nome}%0A📧 Email: ${email}`;
-  const phone = "393932760000"; // metti qui il numero reale
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
-  hasOrdered = true;
-  enableTestimonialForm();
-  window.open(url, '_blank');
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ nome, recensione, translation }),
+    headers: {
+  'Content-Type': 'application/json'
+   }
+  })
+  .then(res => {
+    console.log("Risposta POST:", res.status);
+    if (res.ok) {
+      setTimeout(() => {
+      alert("🎉 Grazie per la tua recensione! La pubblicheremo tra poco.");
+      }, 300);
+      document.getElementById("testimonialForm").reset();
+    } else {
+      if (!res.ok) {
+  	const errMsg = await res.text();
+  	console.error('Messaggio ricevuto:', errMsg);
+  	alert("⚠️ Errore durante l'invio: " + errMsg);
+	}
+    }
+  })
+  .catch(err => {
+    console.error("Errore rete:", err);
+    alert("🚨 Errore di rete. Controlla la connessione.");
+  });
 }
 
-  // Carica testimonianze dal server
-  async function loadTestimonials() {
-    try {
-      const res = await fetch('/api/testimonianze');
-      if (!res.ok) throw new Error('Errore nel caricamento delle testimonianze');
-      const testimonials = await res.json();
-      const container = document.getElementById('testimonialList');
-      container.innerHTML = '';
-      if (testimonials.length === 0) {
-        container.innerHTML = '<p class="lang-it">Nessuna testimonianza disponibile.</p><p class="lang-es" style="display:none;">No hay testimonios disponibles.</p>';
-        return;
-      }
-      testimonials.forEach(t => {
-        const div = document.createElement('div');
-        div.className = 'testimonial';
-        div.innerHTML = `
-          <strong>${t.nome}</strong><br/>
-          <em>${t.messaggio}</em>
-          ${t.translation ? `<p style="font-style: italic; color: #555;">${t.translation}</p>` : ''}
-          <small>${new Date(t.created_at).toLocaleDateString()}</small>
-        `;
-        container.appendChild(div);
+  function loadTestimonials() {
+  fetch(SCRIPT_URL)
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById("testimonialList");
+      list.innerHTML = "";
+      data.reverse().forEach(t => {
+        const div = document.createElement("div");
+        div.className = "testimonial";
+        div.innerHTML = `<p><strong>${t.nome}</strong>: "${t.recensione}"</p>`;
+        list.appendChild(div);
       });
-    } catch (error) {
-      console.error(error);
-    }
+    });
+}
+
+      .catch(() => {
+        document.getElementById("testimonialList").innerHTML = "<p>Impossibile caricare le recensioni.</p>";
+      });
   }
 
-  // Invia nuova testimonianza al server
-  async function submitTestimonial(event) {
-    event.preventDefault();
-    const nome = document.getElementById('nome').value.trim();
-    const recensione = document.getElementById('recensione').value.trim();
-    const translation = document.getElementById('translation').value.trim();
-
-    if (!nome || !recensione) {
-      alert('Nome e recensione sono obbligatori!');
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/testimonianze', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({nome, recensione, translation})
-      });
-      if (!res.ok) throw new Error('Errore nell\'invio della testimonianza');
-      alert('Grazie per la tua testimonianza!');
-      document.getElementById('testimonialForm').reset();
-      loadTestimonials();
-    } catch (error) {
-      alert('Errore durante l\'invio. Riprova più tardi.');
-      console.error(error);
-    }
-  }
-
-  // Carica testimonianze all'avvio
-  window.onload = () => {
-    loadTestimonials();
-    switchLanguage('it'); // lingua default
-  };
+  document.addEventListener("DOMContentLoaded", loadTestimonials);
 </script>
+
 </body>
-</html>
+</html>- Landing Page HTML -->
