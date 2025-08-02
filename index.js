@@ -1,49 +1,46 @@
-const express = require('express');
-const path = require('path');
-const { Pool } = require('pg');
+// index.js
+const express = require("express");
+const { Pool } = require("pg");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
+  ssl: { rejectUnauthorized: false }
+});
+
+// Rotta per inviare testimonianze
+app.post("/api/testimonianze", async (req, res) => {
+  const { nome, recensione } = req.body;
+  try {
+    await pool.query(
+      "INSERT INTO testimonianze (nome, recensione) VALUES ($1, $2)",
+      [nome, recensione]
+    );
+    res.json({ status: "ok" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Errore nel salvataggio" });
   }
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/api/testimonianze', async (req, res) => {
+// Rotta per leggere testimonianze
+app.get("/api/testimonianze", async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM testimonianze ORDER BY data DESC');
+    const result = await pool.query("SELECT * FROM testimonianze ORDER BY id DESC");
     res.json(result.rows);
-  } catch (error) {
-    console.error('Errore nel recupero testimonianze:', error);
-    res.status(500).json({ error: 'Errore nel recupero testimonze' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Errore nel recupero" });
   }
 });
 
-app.post('/api/testimonianze', async (req, res) => {
-  const { nome, recensione, translation } = req.body;
-  if (!nome || !recensione) {
-    return res.status(400).json({ error: 'Campi obbligatori mancanti' });
-  }
-  try {
-    const query = 'INSERT INTO testimonianze (nome, recensione, translation) VALUES ($1, $2, $3)';
-    await pool.query(query, [nome, recensione, translation || null]);
-    res.json({ status: 'ok' });
-  } catch (error) {
-    console.error('Errore nel salvataggio testimonianza:', error);
-    res.status(500).json({ error: 'Errore nel salvataggio testimonianza' });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server avviato su http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`RUEDA backend attivo su http://localhost:${port}`);
 });
