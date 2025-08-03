@@ -92,7 +92,9 @@ section {
   margin: 2rem auto;
   display: block;
 }
-
+.listino-intro {
+  margin-bottom: 20px; /* o 30px per più spazio */
+}
 /* Immagine listino */
 .listino-img {
   width: 100%;
