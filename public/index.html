@@ -79,7 +79,30 @@
       </div>
       <button type="submit">Invia ordine</button>
     </form>
+    
   </section>
+  <section id="testimonianze">
+  <h2 class="lang-it">Lascia una testimonianza</h2>
+  <h2 class="lang-es" style="display: none;">Deja tu testimonio</h2>
+
+  <!-- Form italiano -->
+  <form class="lang-it">
+    <label for="testimonial-it">La tua esperienza</label>
+    <textarea id="testimonial-it" rows="4" placeholder="Scrivi qui..." disabled></textarea>
+    <label for="name-it">Nome</label>
+    <input type="text" id="name-it" placeholder="Il tuo nome" disabled />
+    <button type="submit" disabled>Invia</button>
+  </form>
+    
+  <!-- Form spagnolo -->
+  <form class="lang-es" style="display: none;">
+    <label for="testimonial-es">Tu experiencia</label>
+    <textarea id="testimonial-es" rows="4" placeholder="Escribe aquí..." disabled></textarea>
+    <label for="name-es">Nombre</label>
+    <input type="text" id="name-es" placeholder="Tu nombre" disabled />
+    <button type="submit" disabled>Enviar</button>
+  </form>
+</section>
   <script src="index.js"></script>
 </body>
 </html>
