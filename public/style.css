@@ -103,6 +103,9 @@ section {
   margin: auto;
   border-radius: 10px;
 }
+#listino img {
+  margin-bottom: 30px;
+}
 
 /* Immagini nel form */
 .logo-small {
