@@ -35,7 +35,7 @@ function sendWhatsAppOrder(event) {
   const qty = document.getElementById('orderQty').value;
 
   const message = `Ciao! Vorrei ordinare una confezione RUEDA.%0A📦 Quantità: ${qty} dischi%0A👤 Nome: ${name}%0A📧 Email: ${email}`;
-  const phone = "393932760000";
+  const phone = "393932760000"; // Inserisci il numero corretto
   const url = `https://wa.me/${phone}?text=${message}`;
 
   hasOrdered = true;
