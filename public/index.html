@@ -1,4 +1,3 @@
-// index.html
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -54,7 +53,7 @@
     <h2 class="lang-es" style="display: none;">Lista de precios</h2>
     <p class="lang-it">Consulta qui i prezzi delle confezioni RUEDA disponibili.</p>
     <p class="lang-es" style="display: none;">Consulta aquí los precios de los paquetes RUEDA disponibles.</p>
-    <img src="img/listino.png" alt="Listino prezzi RUEDA" style="width: 100%; max-width: 250px; display: block; margin: auto; border-radius: 10px;" />
+    <img src="img/listino.png" alt="Listino prezzi RUEDA" class="listino-img" />
   </section>
 
   <section id="ordina">
@@ -62,6 +61,7 @@
     <p class="lang-it">Vuoi iniziare subito a cucinare? Ordina direttamente le tue sfoglie artigianali RUEDA!</p>
     <h2 class="lang-es" style="display: none;">Ordena tus discos RUEDA</h2>
     <p class="lang-es" style="display: none;">¿Quieres empezar a cocinar ya? ¡Haz tu pedido de las láminas artesanales RUEDA directamente!</p>
+
     <form id="whatsappOrderForm" onsubmit="sendWhatsAppOrder(event)">
       <label>Nome</label>
       <input type="text" id="orderName" required />
@@ -73,3 +73,12 @@
         <option value="12">Confezione da 12</option>
         <option value="30">Confezione da 30</option>
       </select>
+      <div class="order-images">
+        <img src="logo.png" alt="Logo RUEDA" class="logo-small">
+        <img src="pastelito.jpg" alt="Pastelito" class="pastelito-small">
+      </div>
+      <button type="submit">Invia ordine</button>
+    </form>
+  </section>
+</body>
+</html>
