@@ -177,17 +177,17 @@ footer {
 
 /* Responsive */
 @media (max-width: 600px) {
-  header img.logo {
-    max-width: 200px;
+  header img.logo_ {
+    max-width: 100px;
   }
 
   .pastelito-img {
-    max-width: 120px;
+    max-width: 220px;
   }
 
   .logo-small,
   .pastelito-small {
-    width: 50px;
+    width: 120px;
   }
 
   .lang-toggle {
