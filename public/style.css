@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8f0;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.pastelito-img {
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 20px;
+}
+
+.listino-img {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.logo-small {
+  width: 150px;
+  height: auto;
+  margin: 10px;
+}
+
+.pastelito-small {
+  width: 200px;
+  height: auto;
+  margin
