@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fff8ec; /* Colore di sfondo caldo */
+  background-color: #fff8ec;
   color: #3b2f2f;
 }
 
@@ -16,10 +16,35 @@ header {
 }
 
 header img.logo {
-  width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   height: auto;
 }
+
+/* Bottoni lingua */
+.lang-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.lang-toggle button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #3b2f2f;
+  display: flex;
+  align-items: center;
+}
+
+.lang-toggle img {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 /* Navigazione */
 nav {
   display: flex;
@@ -40,7 +65,7 @@ nav a {
 /* Sezioni */
 section {
   padding: 2rem;
-  max-width: 400px;
+  max-width: 800px;
   margin: auto;
 }
 
@@ -52,17 +77,81 @@ section {
   margin-bottom: 2rem;
 }
 
-/* Form */
-form input,
-form textarea,
-form button,
-form select {
+/* Immagine pastelito grande */
+.pastelito-img {
   width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin: 2rem auto;
+  display: block;
+}
+
+/* Immagine listino */
+.listino-img {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+}
+
+/* Immagini nel form */
+.logo-small {
+  width: 150px;
+  height: auto;
+  margin: 10px;
+}
+
+.pastelito-small {
+  width: 200px;
+  height: auto;
+  margin: 10px;
+}
+
+.order-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Form */
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form label {
+  margin-top: 10px;
+}
+
+form input,
+form select {
+  padding: 8px;
+  margin-top: 5px;
+  width: 250px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #e68a00;
 }
 
 /* Footer */
@@ -73,11 +162,37 @@ footer {
   color: #fff;
 }
 
-/* Pulsanti */
+/* Pulsanti generici */
 .btn {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.7rem 1.2rem;
   background-color: #27ae60;
   color: #fff;
-  border
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header img.logo {
+    max-width: 200px;
+  }
+
+  .pastelito-img {
+    max-width: 220px;
+  }
+
+  .logo-small,
+  .pastelito-small {
+    width: 120px;
+  }
+
+  .lang-toggle {
+    flex-direction: column;
+    top: 10px;
+    right: 10px;
+  }
+}
