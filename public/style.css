@@ -177,8 +177,8 @@ footer {
 
 /* Responsive */
 @media (max-width: 600px) {
-  header img.logo_ {
-    max-width: 100px;
+  header img.logo {
+    max-width: 200px;
   }
 
   .pastelito-img {
