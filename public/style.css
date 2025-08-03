@@ -182,12 +182,12 @@ footer {
   }
 
   .pastelito-img {
-    max-width: 220px;
+    max-width: 120px;
   }
 
   .logo-small,
   .pastelito-small {
-    width: 120px;
+    width: 50px;
   }
 
   .lang-toggle {
