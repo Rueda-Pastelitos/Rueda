@@ -16,12 +16,8 @@ header {
 }
 
 header img.logo {
-  width: 600px;
-  height: auto;
-}
-header img.logo {
   width: 100%;
-  max-width: 200px;
+  max-width: 400px;
   height: auto;
 }
 /* Navigazione */
