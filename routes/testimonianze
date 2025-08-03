@@ -1,0 +1,18 @@
+// routes/testimonianze.js
+const express = require('express');
+const router = express.Router();
+const pool = require('../db/pool');
+
+router.get('/', async (req, res) => {
+  try {
+    const result = await pool.query(
+      'SELECT id, nome, recensione, translation, data FROM testimonianze ORDER BY data DESC'
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Errore nel recupero delle testimonianze:', err);
+    res.status(500).send('Errore nel recupero delle testimonianze');
+  }
+});
+
+module.exports = router;
