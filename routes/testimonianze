@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/pool');
 
+// GET: Recupera tutte le testimonianze
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query(
@@ -12,6 +13,27 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error('Errore nel recupero delle testimonianze:', err);
     res.status(500).send('Errore nel recupero delle testimonianze');
+  }
+});
+
+// POST: Aggiunge una nuova testimonianza
+router.post('/', async (req, res) => {
+  const { nome, recensione, translation } = req.body;
+
+  // Validazione base
+  if (!nome || !recensione) {
+    return res.status(400).json({ error: 'Nome e recensione sono obbligatori' });
+  }
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO testimonianze (nome, recensione, translation) VALUES ($1, $2, $3) RETURNING *',
+      [nome, recensione, translation]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error('Errore nell\'inserimento della testimonianza:', err);
+    res.status(500).send('Errore nel salvataggio della testimonianza');
   }
 });
 
