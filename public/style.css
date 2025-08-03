@@ -13,6 +13,11 @@ header {
   text-align: center;
   padding: 2rem 1rem;
   position: relative;
+  min-height: 100vh; /* 👈 aggiungi questa riga */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente */
+  align-items: center;     /* centra orizzontalmente */
 }
 
 header img.logo {
