@@ -93,7 +93,7 @@ section {
   display: block;
 }
 .listino-intro {
-  margin-bottom: 20px; /* o 30px per più spazio */
+  margin-bottom: 50px; /* o 30px per più spazio */
 }
 /* Immagine listino */
 .listino-img {
