@@ -81,27 +81,31 @@
     </form>
     
   </section>
-  <section id="testimonianze">
+ <section id="testimonianze">
   <h2 class="lang-it">Lascia una testimonianza</h2>
   <h2 class="lang-es" style="display: none;">Deja tu testimonio</h2>
 
   <!-- Form italiano -->
-  <form class="lang-it">
+  <form class="lang-it" onsubmit="inviaTestimonianza(event, 'it')">
     <label for="testimonial-it">La tua esperienza</label>
-    <textarea id="testimonial-it" rows="4" placeholder="Scrivi qui..." disabled></textarea>
+    <textarea id="testimonial-it" rows="4" placeholder="Scrivi qui..." required></textarea>
     <label for="name-it">Nome</label>
-    <input type="text" id="name-it" placeholder="Il tuo nome" disabled />
-    <button type="submit" disabled>Invia</button>
+    <input type="text" id="name-it" placeholder="Il tuo nome" required />
+    <button type="submit">Invia</button>
   </form>
-    
+
   <!-- Form spagnolo -->
-  <form class="lang-es" style="display: none;">
+  <form class="lang-es" style="display: none;" onsubmit="inviaTestimonianza(event, 'es')">
     <label for="testimonial-es">Tu experiencia</label>
-    <textarea id="testimonial-es" rows="4" placeholder="Escribe aquí..." disabled></textarea>
+    <textarea id="testimonial-es" rows="4" placeholder="Escribe aquí..." required></textarea>
     <label for="name-es">Nombre</label>
-    <input type="text" id="name-es" placeholder="Tu nombre" disabled />
-    <button type="submit" disabled>Enviar</button>
+    <input type="text" id="name-es" placeholder="Tu nombre" required />
+    <button type="submit">Enviar</button>
   </form>
+
+  <h3 class="lang-it">Cosa dicono di noi</h3>
+  <h3 class="lang-es" style="display: none;">Qué dicen de nosotros</h3>
+  <div id="lista-testimonianze"></div>
 </section>
   <script src="index.js"></script>
 </body>
