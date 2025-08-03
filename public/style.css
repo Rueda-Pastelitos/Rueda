@@ -126,6 +126,9 @@ form {
   flex-direction: column;
   align-items: center;
 }
+#whatsappOrderForm {
+  margin-top: 20px;
+}
 
 form label {
   margin-top: 10px;
