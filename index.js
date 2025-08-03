@@ -4,6 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const exampleRouter = require('./routes/example');
+const testimonianzeRouter = require('./routes/testimonianze'); // ✅ aggiunto
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API routes
 app.use('/api/example', exampleRouter);
+app.use('/api/testimonianze', testimonianzeRouter); // ✅ aggiunto
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
