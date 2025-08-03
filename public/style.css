@@ -19,13 +19,11 @@ header img.logo {
   width: 400px;
   height: auto;
 }
-.language-buttons {
-  display: flex;
-  justify-content: flex-end; /* Sposta i bottoni a destra */
-  gap: 10px; /* Spazio tra i bottoni */
-  margin-top: 10px;
+header img.logo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
 }
-
 /* Navigazione */
 nav {
   display: flex;
