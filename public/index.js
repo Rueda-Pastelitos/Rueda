@@ -51,7 +51,7 @@ function inviaTestimonianza(event, lingua) {
   const nome = document.getElementById(`name-${lingua}`).value;
   const testo = document.getElementById(`testimonial-${lingua}`).value;
 
-  fetch('https://tuo-backend-su-railway.com/api/testimonianze', {
+  fetch('https://postgresql://postgres:AjRGWlcDKakqBymGeaVoQDHXZXRmmBEx@postgres.railway.internal:5432/railway', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
