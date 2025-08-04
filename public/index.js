@@ -51,17 +51,17 @@ function inviaTestimonianza(event, lingua) {
   const nome = document.getElementById(`name-${lingua}`).value;
   const testo = document.getElementById(`testimonial-${lingua}`).value;
 
-  fetch('https://rueda-production.up.railway.app', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      nome: nome,
-      testimonianza: testo,
-      lingua: lingua
-    })
+  fetch('https://rueda-production.up.railway.app/api/testimonianze', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    nome: nome,
+    recensione: testo,
+    translation: lingua === 'es' ? testo : '' // o come preferisci gestire la traduzione
   })
+})
   .then(response => {
     if (!response.ok) throw new Error("Errore nel salvataggio");
     return response.json();
