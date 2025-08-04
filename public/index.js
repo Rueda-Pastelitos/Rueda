@@ -51,7 +51,7 @@ function inviaTestimonianza(event, lingua) {
   const nome = document.getElementById(`name-${lingua}`).value;
   const testo = document.getElementById(`testimonial-${lingua}`).value;
 
-  fetch('https://postgresql://postgres:AjRGWlcDKakqBymGeaVoQDHXZXRmmBEx@postgres.railway.internal:5432/railway', {
+  fetch('https://rueda-production.up.railway.app', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
