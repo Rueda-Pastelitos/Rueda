@@ -44,6 +44,39 @@ function sendWhatsAppOrder(event) {
   window.open(url, '_blank');
 }
 
+// Invia testimonianza
+function inviaTestimonianza(event, lingua) {
+  event.preventDefault();
+
+  const nome = document.getElementById(`name-${lingua}`).value;
+  const testo = document.getElementById(`testimonial-${lingua}`).value;
+
+  fetch('https://tuo-backend-su-railway.com/api/testimonianze', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      nome: nome,
+      testimonianza: testo,
+      lingua: lingua
+    })
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Errore nel salvataggio");
+    return response.json();
+  })
+  .then(data => {
+    alert("Grazie per la tua testimonianza!");
+    document.getElementById(`name-${lingua}`).value = '';
+    document.getElementById(`testimonial-${lingua}`).value = '';
+  })
+  .catch(error => {
+    console.error("Errore:", error);
+    alert("Si è verificato un errore. Riprova più tardi.");
+  });
+}
+
 // Inizializza la pagina
 document.addEventListener('DOMContentLoaded', () => {
   switchLanguage('it'); // Lingua predefinita
