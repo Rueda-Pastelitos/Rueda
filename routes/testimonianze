@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/pool');
 
-// GET: Recupera tutte le testimonianze
+// ✅ GET: Recupera tutte le testimonianze
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query(
@@ -11,28 +11,35 @@ router.get('/', async (req, res) => {
     );
     res.json(result.rows);
   } catch (err) {
-    console.error('Errore nel recupero delle testimonianze:', err);
+    console.error('❌ Errore nel recupero delle testimonianze:', err);
     res.status(500).send('Errore nel recupero delle testimonianze');
   }
 });
 
-// POST: Aggiunge una nuova testimonianza
+// ✅ POST: Aggiunge una nuova testimonianza
 router.post('/', async (req, res) => {
   const { nome, recensione, translation } = req.body;
 
-  // Validazione base
-  if (!nome || !recensione) {
-    return res.status(400).json({ error: 'Nome e recensione sono obbligatori' });
+  console.log('📨 Dati ricevuti:', req.body);
+
+  // 🔍 Validazione robusta
+  if (!nome || typeof nome !== 'string' || nome.trim() === '') {
+    return res.status(400).json({ error: 'Il nome è obbligatorio e deve essere una stringa non vuota' });
+  }
+
+  if (!recensione || typeof recensione !== 'string' || recensione.trim() === '') {
+    return res.status(400).json({ error: 'La recensione è obbligatoria e deve essere una stringa non vuota' });
   }
 
   try {
     const result = await pool.query(
       'INSERT INTO testimonianze (nome, recensione, translation) VALUES ($1, $2, $3) RETURNING *',
-      [nome, recensione, translation]
+      [nome.trim(), recensione.trim(), translation || null]
     );
+    console.log('✅ Testimonianza salvata:', result.rows[0]);
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    console.error('Errore nell\'inserimento della testimonianza:', err);
+    console.error('❌ Errore nell\'inserimento della testimonianza:', err);
     res.status(500).send('Errore nel salvataggio della testimonianza');
   }
 });
