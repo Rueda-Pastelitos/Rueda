@@ -187,6 +187,35 @@ footer {
   text-decoration: none;
   cursor: pointer;
 }
+.ordine-rueda {
+  text-align: center;
+  margin: 40px 0; /* spazio sopra e sotto */
+}
+
+.ordine-rueda h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.ordine-rueda p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn-verde {
+  display: inline-block;
+  background-color: #28a745; /* verde brillante */
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-verde:hover {
+  background-color: #218838; /* verde più scuro al passaggio del mouse */
+}
 
 /* Responsive */
 @media (max-width: 600px) {
