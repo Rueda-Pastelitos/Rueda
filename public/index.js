@@ -39,7 +39,7 @@ function sendWhatsAppOrder(event) {
   const url = `https://wa.me/${phone}?text=${message}`;
 
   hasOrdered = true;
-  alert("Grazie per l'ordine! Ora puoi lasciare una recensione.");
+  alert("Grazie per il tuo ordine! Ora puoi lasciare una recensione.");
   enableTestimonialForm();
   window.open(url, '_blank');
 }
