@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/example', exampleRouter);
 app.use('/api/testimonianze', testimonianzeRouter); // ✅ aggiunto
 
-const PORT = process.env.PORT || 3000;ù
+const PORT = process.env.PORT || 3000;
 
 const pool = require('./db/pool'); // Assicurati che il path sia corretto
 async function ensureTableExists() {
