@@ -19,7 +19,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/example', exampleRouter);
 app.use('/api/testimonianze', testimonianzeRouter); // ✅ aggiunto
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;ù
+
+const pool = require('./db/pool'); // Assicurati che il path sia corretto
+async function ensureTableExists() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS testimonianze (
+        id SERIAL PRIMARY KEY,
+        nome TEXT NOT NULL,
+        recensione TEXT NOT NULL,
+        translation TEXT,
+        data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('✅ Tabella "testimonianze" pronta');
+  } catch (err) {
+    console.error('❌ Errore nella creazione della tabella:', err);
+  }
+}
+ensureTableExists();
 app.listen(PORT, () => {
   console.log(`✅ Server avviato su http://localhost:${PORT}`);
 });
