@@ -1,15 +1,14 @@
 //pool;
+
 const { Pool } = require('pg');
 
-const isLocal = process.env.NODE_ENV !== 'production';
-
-const connectionString = isLocal
-  ? 'postgresql://postgres:aSGLozEYytZyNJCXSsEmTyaAAWJxQAol@shuttle.proxy.rlwy.net:32164/railway' // public
-  : 'postgresql://postgres:aSGLozEYytZyNJCXSsEmTyaAAWJxQAol@postgres.railway.internal:5432/railway'; // interna
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:aSGLozEYytZyNJCXSsEmTyaAAWJxQAol@your-db-host:5432/railway';
 
 const pool = new Pool({
   connectionString,
-  ssl: { rejectUnauthorized: false },
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = pool;
